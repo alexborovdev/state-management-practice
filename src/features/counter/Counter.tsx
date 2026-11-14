@@ -1,4 +1,4 @@
-import { type ChangeEvent, useState } from 'react'
+import { type ChangeEvent, type KeyboardEvent, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { incrementAC, decrementAC, setStepAC, resetAC } from './counter.actions.ts'
 import type { AppDispatch, RootState } from '../../app/store.ts'
@@ -18,6 +18,11 @@ const Counter = () => {
 
   const onCurrentStepInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCurrentStep(event.currentTarget.value)
+  }
+  const onCurrentStepKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter' && isValidStep) {
+      onSetStepButtonClick()
+    }
   }
   const onAddButtonClick = () => {
     dispatch(incrementAC())
@@ -42,6 +47,7 @@ const Counter = () => {
         placeholder="Enter step"
         value={currentStep}
         onChange={onCurrentStepInputChange}
+        onKeyDown={onCurrentStepKeyDown}
       />
       <button
         type="button"

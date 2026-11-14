@@ -1,15 +1,13 @@
 import { type ChangeEvent, type KeyboardEvent, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useAppDispatch, useAppSelector } from '../../app/hooks.ts'
 import { incrementAC, decrementAC, setStepAC, resetAC } from './counter.actions.ts'
-import type { AppDispatch, RootState } from '../../app/store.ts'
 
 const Counter = () => {
+  const count = useAppSelector(state => state.count)
+  const step = useAppSelector(state => state.step)
+  const dispatch = useAppDispatch()
+
   const [currentStep, setCurrentStep] = useState('')
-
-  const count = useSelector((state: RootState) => state.count)
-  const step = useSelector((state: RootState) => state.step)
-
-  const dispatch = useDispatch<AppDispatch>()
 
   const isValidStep =
     currentStep.trim() !== '' &&

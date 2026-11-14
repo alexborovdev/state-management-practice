@@ -11,6 +11,10 @@ export const counterReducer = (state: CounterState = initialState, action: Actio
       return { ...state, count: state.count - state.step }
     }
     case 'SET_STEP': {
+      if (!Number.isSafeInteger(action.payload) || action.payload <= 0) {
+        return state
+      }
+
       return { ...state, step: action.payload }
     }
     case 'RESET': {

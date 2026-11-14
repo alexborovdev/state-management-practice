@@ -16,6 +16,8 @@ const Counter = () => {
     Number.isSafeInteger(+currentStep) &&
     +currentStep > 0
 
+  const hasStepError = !isValidStep && currentStep.trim() !== ''
+
   const onCurrentStepInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     setCurrentStep(event.currentTarget.value)
   }
@@ -49,31 +51,34 @@ const Counter = () => {
         onChange={onCurrentStepInputChange}
         onKeyDown={onCurrentStepKeyDown}
       />
-      <button
-        type="button"
-        onClick={onAddButtonClick}
-      >
-        Add {step}
-      </button>
-      <button
-        type="button"
-        onClick={onMinusButtonClick}
-      >
-        Minus {step}
-      </button>
-      <button
-        type="button"
-        disabled={!isValidStep}
-        onClick={onSetStepButtonClick}
-      >
-        Set step: {currentStep}
-      </button>
-      <button
-        type="button"
-        onClick={onResetButtonClick}
-      >
-        Reset
-      </button>
+      {hasStepError && <div>Step must be a positive integer</div>}
+      <div>
+        <button
+          type="button"
+          onClick={onAddButtonClick}
+        >
+          Add {step}
+        </button>
+        <button
+          type="button"
+          onClick={onMinusButtonClick}
+        >
+          Minus {step}
+        </button>
+        <button
+          type="button"
+          disabled={!isValidStep}
+          onClick={onSetStepButtonClick}
+        >
+          Set step: {currentStep}
+        </button>
+        <button
+          type="button"
+          onClick={onResetButtonClick}
+        >
+          Reset
+        </button>
+      </div>
     </>
   )
 }

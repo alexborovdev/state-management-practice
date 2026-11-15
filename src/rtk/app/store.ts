@@ -1,6 +1,10 @@
+import { configureStore } from '@reduxjs/toolkit'
+import type { ThunkAction, UnknownAction } from '@reduxjs/toolkit'
 import counterReducer from '../features/counter/counter.slice.ts'
 import { usersReducer } from '../features/users/users.reducer.ts'
-import { configureStore } from '@reduxjs/toolkit'
+
+export type AppThunk<ReturnType = void> =
+  ThunkAction<ReturnType, RootState, unknown, UnknownAction>
 
 const store = configureStore({
     reducer: {

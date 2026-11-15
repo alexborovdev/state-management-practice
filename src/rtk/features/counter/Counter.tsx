@@ -1,6 +1,6 @@
 import { type ChangeEvent, type KeyboardEvent, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts'
-import { incrementAC, decrementAC, setStepAC, undoAC, resetAC } from './counter.actions.ts'
+import { increment, decrement, setStep, undo, reset } from './counter.slice.ts'
 import { incrementAsync } from './counter.thunks.ts'
 
 const Counter = () => {
@@ -28,20 +28,20 @@ const Counter = () => {
     }
   }
   const onUndoButtonClick = () => {
-    dispatch(undoAC())
+    dispatch(undo())
   }
   const onAddButtonClick = () => {
-    dispatch(incrementAC())
+    dispatch(increment())
   }
   const onMinusButtonClick = () => {
-    dispatch(decrementAC())
+    dispatch(decrement())
   }
   const onSetStepButtonClick = () => {
-    dispatch(setStepAC(+currentStep))
+    dispatch(setStep(+currentStep))
     setCurrentStep('')
   }
   const onResetButtonClick = () => {
-    dispatch(resetAC())
+    dispatch(reset())
     setCurrentStep('')
   }
 

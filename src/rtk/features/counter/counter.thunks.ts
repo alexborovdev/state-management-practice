@@ -1,17 +1,15 @@
-import { type ThunkAction } from 'redux-thunk'
-import { incrementAC, incrementAsyncFinishAC, incrementAsyncStartAC } from './counter.actions.ts'
-import type { RootState } from '../../app/store.ts'
-import type { Action } from './counter.types.ts'
+import { increment, asyncStart, asyncFinish } from './counter.slice.ts'
+import type { AppThunk } from '../../app/store.ts'
 
-export const incrementAsync = (): ThunkAction<void, RootState, unknown, Action> =>
+export const incrementAsync = (): AppThunk =>
   (dispatch, getState) => {
     if (getState().counter.isLoading) {return}
 
-    dispatch(incrementAsyncStartAC())
+    dispatch(asyncStart())
     setTimeout(() => {
       if (!getState().counter.isLoading) {return}
 
-      dispatch(incrementAC())
-      dispatch(incrementAsyncFinishAC())
+      dispatch(increment())
+      dispatch(asyncFinish())
     }, 2000)
   }

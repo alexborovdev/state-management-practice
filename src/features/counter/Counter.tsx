@@ -1,6 +1,7 @@
 import { type ChangeEvent, type KeyboardEvent, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts'
 import { incrementAC, decrementAC, setStepAC, undoAC, resetAC } from './counter.actions.ts'
+import { incrementAsync } from './counter.thunks.ts'
 
 const Counter = () => {
   const count = useAppSelector(state => state.count)
@@ -45,6 +46,7 @@ const Counter = () => {
 
   return (
     <>
+      <button type="button" onClick={() => dispatch(incrementAsync())}>Async</button>
       <h1>{count}</h1>
       <div>
         <input

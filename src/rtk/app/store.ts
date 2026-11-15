@@ -1,4 +1,4 @@
-import { counterReducer } from '../features/counter/counter.reducer.ts'
+import counterReducer from '../features/counter/counter.slice.ts'
 import { usersReducer } from '../features/users/users.reducer.ts'
 import { configureStore } from '@reduxjs/toolkit'
 

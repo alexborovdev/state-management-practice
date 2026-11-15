@@ -50,9 +50,18 @@ export const counterSlice = createSlice({
 
       state.count = previousState.count
       state.step = previousState.step
+    },
+    asyncStart (state) {
+      state.isLoading = true
+    },
+    asyncFinish (state) {
+      state.isLoading = false
+    },
+    reset () {
+      return initialState
     }
   }
 })
 
-export const { increment, decrement, setStep, undo } = counterSlice.actions
+export const { increment, decrement, setStep, undo, asyncStart, asyncFinish, reset } = counterSlice.actions
 export default counterSlice.reducer

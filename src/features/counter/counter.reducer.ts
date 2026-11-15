@@ -21,6 +21,15 @@ export const counterReducer = (state: CounterState = initialState, action: Actio
 
       return { ...state, history: [...state.history, { count: state.count, step: state.step }], step: action.payload }
     }
+    case 'UNDO': {
+      const lastElement = state.history.at(-1)
+
+      if (!lastElement) {
+        return state
+      }
+
+      return { ...state, count: lastElement.count, step: lastElement.step, history: state.history.slice(0, -1) }
+    }
     case 'RESET': {
       return initialState
     }

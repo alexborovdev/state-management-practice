@@ -2,6 +2,7 @@ import type {
   incrementAC,
   decrementAC,
   setStepAC,
+  undoAC,
   resetAC,
 } from './counter.actions.ts'
 
@@ -20,4 +21,5 @@ export type Action =
   | ReturnType<typeof incrementAC>
   | ReturnType<typeof decrementAC>
   | ReturnType<typeof setStepAC>
+  | ReturnType<typeof undoAC>
   | ReturnType<typeof resetAC>

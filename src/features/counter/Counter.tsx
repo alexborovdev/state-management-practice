@@ -7,6 +7,7 @@ const Counter = () => {
   const count = useAppSelector(state => state.count)
   const step = useAppSelector(state => state.step)
   const history = useAppSelector(state => state.history)
+  const isLoading = useAppSelector(state => state.isLoading)
   const dispatch = useAppDispatch()
 
   const [currentStep, setCurrentStep] = useState('')
@@ -46,7 +47,13 @@ const Counter = () => {
 
   return (
     <>
-      <button type="button" onClick={() => dispatch(incrementAsync())}>Async</button>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={() => dispatch(incrementAsync())}
+      >
+        {isLoading ? 'Loading...' : 'Async'}
+      </button>
       <h1>{count}</h1>
       <div>
         <input

@@ -1,6 +1,6 @@
 import type { Action, CounterState } from './counter.types.ts'
 
-const initialState: CounterState = { count: 0, step: 1, history: [] }
+const initialState: CounterState = { count: 0, step: 1, history: [], isLoading: false }
 
 export const counterReducer = (state: CounterState = initialState, action: Action): CounterState => {
   switch (action.type) {
@@ -29,6 +29,12 @@ export const counterReducer = (state: CounterState = initialState, action: Actio
       }
 
       return { ...state, count: lastElement.count, step: lastElement.step, history: state.history.slice(0, -1) }
+    }
+    case 'ASYNC_START': {
+      return { ...state, isLoading: true }
+    }
+    case 'ASYNC_FINISH': {
+      return { ...state, isLoading: false }
     }
     case 'RESET': {
       return initialState

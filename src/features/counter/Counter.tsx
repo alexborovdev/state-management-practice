@@ -47,13 +47,6 @@ const Counter = () => {
 
   return (
     <>
-      <button
-        type="button"
-        disabled={isLoading}
-        onClick={() => dispatch(incrementAsync())}
-      >
-        {isLoading ? 'Loading...' : 'Async'}
-      </button>
       <h1>{count}</h1>
       <div>
         <input
@@ -99,6 +92,13 @@ const Counter = () => {
           Reset
         </button>
       </div>
+      <button
+        type="button"
+        disabled={isLoading}
+        onClick={() => dispatch(incrementAsync())}
+      >
+        {isLoading ? 'Loading...' : 'Async'}
+      </button>
     </>
   )
 }

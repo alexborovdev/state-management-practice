@@ -1,10 +1,11 @@
 import { type ChangeEvent, type KeyboardEvent, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts'
-import { incrementAC, decrementAC, setStepAC, resetAC } from './counter.actions.ts'
+import { incrementAC, decrementAC, setStepAC, undoAC, resetAC } from './counter.actions.ts'
 
 const Counter = () => {
   const count = useAppSelector(state => state.count)
   const step = useAppSelector(state => state.step)
+  const history = useAppSelector(state => state.history)
   const dispatch = useAppDispatch()
 
   const [currentStep, setCurrentStep] = useState('')
@@ -24,6 +25,9 @@ const Counter = () => {
       onSetStepButtonClick()
     }
   }
+  const onUndoButtonClick = () => {
+    dispatch(undoAC())
+  }
   const onAddButtonClick = () => {
     dispatch(incrementAC())
   }
@@ -42,14 +46,23 @@ const Counter = () => {
   return (
     <>
       <h1>{count}</h1>
-      <input
-        type="number"
-        placeholder="Enter step"
-        value={currentStep}
-        onChange={onCurrentStepInputChange}
-        onKeyDown={onCurrentStepKeyDown}
-      />
-      {hasStepError && <div>Step must be a positive integer</div>}
+      <div>
+        <input
+          type="number"
+          placeholder="Enter step"
+          value={currentStep}
+          onChange={onCurrentStepInputChange}
+          onKeyDown={onCurrentStepKeyDown}
+        />
+        <button
+          type="button"
+          onClick={onUndoButtonClick}
+          disabled={history.length === 0}
+        >
+          Undo
+        </button>
+        {hasStepError && <div>Step must be a positive integer</div>}
+      </div>
       <div>
         <button
           type="button"

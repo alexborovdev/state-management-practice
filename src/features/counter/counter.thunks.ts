@@ -5,11 +5,11 @@ import type { Action } from './counter.types.ts'
 
 export const incrementAsync = (): ThunkAction<void, RootState, unknown, Action> =>
   (dispatch, getState) => {
-    if (getState().isLoading) {return}
+    if (getState().counter.isLoading) {return}
 
     dispatch(incrementAsyncStartAC())
     setTimeout(() => {
-      if (!getState().isLoading) {return}
+      if (!getState().counter.isLoading) {return}
 
       dispatch(incrementAC())
       dispatch(incrementAsyncFinishAC())

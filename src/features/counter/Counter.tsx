@@ -4,10 +4,10 @@ import { incrementAC, decrementAC, setStepAC, undoAC, resetAC } from './counter.
 import { incrementAsync } from './counter.thunks.ts'
 
 const Counter = () => {
-  const count = useAppSelector(state => state.count)
-  const step = useAppSelector(state => state.step)
-  const history = useAppSelector(state => state.history)
-  const isLoading = useAppSelector(state => state.isLoading)
+  const count = useAppSelector(state => state.counter.count)
+  const step = useAppSelector(state => state.counter.step)
+  const history = useAppSelector(state => state.counter.history)
+  const isLoading = useAppSelector(state => state.counter.isLoading)
   const dispatch = useAppDispatch()
 
   const [currentStep, setCurrentStep] = useState('')

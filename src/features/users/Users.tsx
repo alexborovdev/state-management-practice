@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks.ts'
 import { fetchUsers } from './users.thunks.ts'
 
@@ -6,6 +7,10 @@ const Users = () => {
   const isLoading = useAppSelector(state => state.users.isLoading)
   const error = useAppSelector(state => state.users.error)
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchUsers())
+  }, [dispatch])
 
   const onLoadUsersButtonClick = () => {
     dispatch(fetchUsers())

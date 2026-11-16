@@ -47,7 +47,7 @@ const Counter = () => {
 
   return (
     <>
-      <h1>{count}</h1>
+      <h2>{count}</h2>
       <div>
         <input
           type="number"

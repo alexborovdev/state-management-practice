@@ -4,6 +4,7 @@ import Users from '../features/users/Users.tsx'
 const App = () => {
   return (
     <>
+      <h1>RTK</h1>
       <div>
         <h2>Counter</h2>
         <Counter />
